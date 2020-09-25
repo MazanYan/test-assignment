@@ -1,0 +1,10 @@
+nav {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: darkorange;
+  color: navajowhite;
+  padding-left: 1rem;
+}

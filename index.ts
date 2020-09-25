@@ -1,8 +1,11 @@
 import express, { Request, Response } from 'express';
 import readData, { Movie, OrderBy, Order, orderData } from './helpers/dataProcessing';
+import path from 'path';
 
 const app = express();
 const port = process.env.PORT || 4000;
+
+app.use(express.static(path.join(process.cwd(), 'client', 'dist', 'client')));
 
 /**
  * API route that returns page of movies in size of 20 records
@@ -38,7 +41,7 @@ app.get('/movies/:pg', (req: Request, res: Response) => {
 });
 
 app.get('/', async (req: Request, res: Response) => {
-    res.status(200).send("Hello world!");
+    res.sendFile(path.join(process.cwd(), 'client', 'dist', 'client', 'index.html'));
 });
 
 app.listen(port, () => {

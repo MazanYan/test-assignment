@@ -1,0 +1,23 @@
+<div class="select-page">
+  <h1>
+    Select page of movies by given parameters
+  </h1>
+  <form class="order-form">
+    <label for="page">Page number</label>
+    <input type="number" id="page" name="page" min="0" value="0">
+    <label for="orderBy">Order By</label>
+    <select class="icons" id="orderBy" name="orderBy">
+      <option *ngFor="let order of orderBy"
+                  [value]="order.value">
+        {{order.viewVal}}
+      </option>
+    </select>
+    <label for="order">Order</label>
+    <select class="icons" id="order" name="order">
+      <option *ngFor="let ord of order"
+              [value]="ord.value">
+        {{ord.viewVal}}
+    </select>
+    <button id="search-movies" type="submit">Search movies</button>
+  </form>
+</div>
