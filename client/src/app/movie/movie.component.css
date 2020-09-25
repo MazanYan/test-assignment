@@ -1,0 +1,17 @@
+.movie-block {
+  border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.movie-block > * {
+  padding-left: 1rem;
+}
+
+.movie-data {
+  list-style: none;
+  padding-left: 0;
+}
+
+.movie-data > li {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+}

@@ -24,17 +24,19 @@ app.get('/movies/:pg', (req: Request, res: Response) => {
         .then((data: Movie[]) => {
             if (!!req.query.orderBy) {
                 const orderBy: string = req.query.orderBy as string;
-                const order: string = req.query.order as string;
                 if (!(Object.values(OrderBy).includes(orderBy))) {
                     res.status(400).send("Data can be ordered only by name, year or genre");
                     return;
                 }
-                else if (!!order && !(Object.values(Order).includes(order))) {
-                    res.status(400).send("Data can be ordered only 'asc' or 'desc'");
-                    return;
-                }
-                data = orderData(data, orderBy, order);
+                data = orderData(data, orderBy);
             }
+            const order: string = req.query.order as string;
+            if (!!order && !(Object.values(Order).includes(order))) {
+                res.status(400).send("Data can be ordered only 'asc' or 'desc'");
+                return;
+            }
+            else if (order === Order.desc)
+                data = data.reverse()
             res.json(data);
         })
         .catch(err => res.status(404).send(`Could not find data. Error: ${err}`));

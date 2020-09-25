@@ -23,9 +23,9 @@ export const Order = {
 }
 
 const compareFunctions = {
-    name: (a: Movie, b: Movie) => a.name.localeCompare(b.name),
-    year: (a: Movie, b: Movie) => a.year - b.year,
-    genre: (a: Movie, b: Movie) => {
+    name: (a: Movie, b: Movie): number => a.name.localeCompare(b.name),
+    year: (a: Movie, b: Movie): number => a.year - b.year,
+    genre: (a: Movie, b: Movie): number => {
         const genresMaxSize = Math.max(a.genre.length, b.genre.length);
         let i = 0;
         let firstBigger = 0;
@@ -33,7 +33,6 @@ const compareFunctions = {
             firstBigger = a.genre[i]?.localeCompare(b.genre[i]);
             i++;
         }
-        console.log(`Compare of [${a.genre}], [${b.genre}]. Result: ${firstBigger}`)
         return firstBigger;
     }
 }
@@ -75,13 +74,8 @@ export default function readData(page: number) {
  * Function to order movies data array by columns and by ascending or descending order
  * @param {Array<Movie>} data Source data array
  * @param {string} column Column to order by. Must equal to 'name', 'year' or 'genre'
- * @param {string} order Order of array. Must equal to 'asc' or 'desc'
  */
-export function orderData(data: Movie[], column: string, order: string | undefined): Movie[] {
+export function orderData(data: Movie[], column: string): Movie[] {
     // @ts-ignore
-    let sortedData = [...data].sort(compareFunctions[column]);
-    console.log(sortedData);
-    if (!!order && order === Order.desc)
-        sortedData = sortedData.reverse();
-    return sortedData;
+    return [...data].sort(compareFunctions[column]);
 }

@@ -20,6 +20,10 @@
   grid-column-end: 3;
 }
 
+#search-movies:hover {
+  background-color: gray;
+}
+
 select, input[type=number], button {
   padding: 0 0 0 0.3rem;
   background-color: lightgray;
